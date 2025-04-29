@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: src/Frankfurt/Dockerfile
+    ports:
+      - "5225:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - JwtSettings__Secret=${JWT_SECRET}
+      - JwtSettings__Issuer=frankfurt-api
+      - JwtSettings__Audience=frankfurt-client
+    networks:
+      - frankfurt-network
+
+
+networks:
+  frankfurt-network:
+    driver: bridge

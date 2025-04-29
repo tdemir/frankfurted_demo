@@ -18,3 +18,10 @@ dotnet sln add Frankfurt.Tests/Frankfurt.Tests.csproj
 # Add reference from test project to main project
 dotnet add Frankfurt.Tests/Frankfurt.Tests.csproj reference Frankfurt/Frankfurt.csproj
 
+# if Controllers and Models folders doesnot exist
+cd Frankfurt
+mkdir Controllers Models
+cd ..
+
+# generate jwt token secret
+openssl rand -base64 32

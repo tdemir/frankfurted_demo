@@ -1,6 +1,27 @@
-@Frankfurt_HostAddress = http://localhost:5225
+@baseUrl = http://localhost:5225
 
-GET {{Frankfurt_HostAddress}}/weatherforecast/
+GET {{baseUrl}}/weatherforecast/
 Accept: application/json
 
-###
+### Login
+# @name login
+POST {{baseUrl}}/api/v1/user/login
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "123"
+}
+
+### Set token from login response
+@token = {{login.response.body.token}}
+
+### Get Currency Latest Data
+GET {{baseUrl}}/api/v1/currency/latest?baseCurrency=EUR
+
+### Get Currency Convert
+GET {{baseUrl}}/api/v1/currency/convert?fromCurrency=EUR&toCurrency=USD&amount=1
+
+### Get Currency Historical Data
+GET {{baseUrl}}/api/v1/currency/historical?base=EUR&startDate=2023-01-01&endDate=2023-01-31&page=1
+Authorization: Bearer {{token}}
