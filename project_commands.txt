@@ -1,0 +1,20 @@
+# Create a new directory for your solution
+mkdir src
+cd src
+
+# Create the solution file
+dotnet new sln -n Frankfurt
+
+# Create a new web API project
+dotnet new webapi -n Frankfurt
+
+# Create a new test project
+dotnet new xunit -n Frankfurt.Tests
+
+# Add projects to the solution
+dotnet sln add Frankfurt/Frankfurt.csproj
+dotnet sln add Frankfurt.Tests/Frankfurt.Tests.csproj
+
+# Add reference from test project to main project
+dotnet add Frankfurt.Tests/Frankfurt.Tests.csproj reference Frankfurt/Frankfurt.csproj
+
